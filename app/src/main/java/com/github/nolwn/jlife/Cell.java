@@ -1,22 +1,21 @@
 package com.github.nolwn.jlife;
 
 public class Cell {
-	private boolean alive;
+	public static final boolean ALIVE = true;
+	public static final boolean DEAD = false;
+	
+	private boolean isAlive;
 	
 	public Cell(boolean alive) {
-		this.alive = alive;
+		this.isAlive = alive;
 	}
 	
 	public boolean isAlive() {
-		return this.alive;
+		return this.isAlive;
 	}
-	
-	public void kill() {
-		this.alive = false;
-	}
-	
-	public void live() {
-		this.alive = true;
+
+	public void setIsAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 }
 	

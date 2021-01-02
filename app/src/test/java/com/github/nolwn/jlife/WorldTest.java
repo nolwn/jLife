@@ -1,6 +1,8 @@
 package com.github.nolwn.jlife;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 public class WorldTest {
@@ -19,10 +21,42 @@ public class WorldTest {
 	}
 
 	@Test
-	public void getCellStatusWithinRange() {
+	public void getCellStatusWithinRange() throws IndexOutOfBoundsException{
 		World world = new World(4, 4);
-		boolean status = world.getCell(1, 2);
+		boolean status; 
 
-		assertEquals(false, status);
+		status = world.getCell(1, 3);
+
+		assertEquals(Cell.DEAD, status);
+	}
+
+	@Test
+	public void getCellthrowsWhenCoordsOutOfRange() {
+		World world = new World(4, 4);
+
+		assertThrows(IndexOutOfBoundsException.class, () -> world.getCell(3, 4));
+	}
+
+	@Test
+	public void setCellStatusWithinRange() throws IndexOutOfBoundsException {
+		World world = new World(4, 4);
+		int x = 2;
+		int y = 3;
+
+		world.setCell(x, y, Cell.ALIVE);
+
+		boolean cell = world.getCell(x, y);
+
+		assertEquals(Cell.ALIVE, cell);
+	}
+
+	@Test
+	public void setCellthrowsWhenCoordsOutOfRange() {
+		World world = new World(4, 4);
+
+		assertThrows(
+			IndexOutOfBoundsException.class, 
+			() -> world.setCell(2, 5, Cell.ALIVE)
+		);
 	}
 }

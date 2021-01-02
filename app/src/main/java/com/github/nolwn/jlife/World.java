@@ -33,12 +33,26 @@ public class World {
 		return output;
 	}
 	
-	public boolean getCell(int x, int y) {
-		if (!checkCoords(x, y)) {}
+	public boolean getCell(int x, int y) throws IndexOutOfBoundsException {
+		Cell cell = this.getCellFromCoords(x, y);
+
+		return cell.isAlive();
+	}
+
+	public void setCell(int x, int y, boolean value) throws IndexOutOfBoundsException {
+		Cell cell = this.getCellFromCoords(x, y);
+
+		cell.setIsAlive(value);
+	}
+
+	private Cell getCellFromCoords(int x, int y) throws IndexOutOfBoundsException {
+		if (!checkCoords(x, y)) {
+			throw new IndexOutOfBoundsException();
+		}
 
 		int len = (y - 1) * this.height + this.width;
 
-		return this.cells[len].isAlive();
+		return this.cells[len];
 	}
 
 	private boolean checkCoords(int x, int y) {

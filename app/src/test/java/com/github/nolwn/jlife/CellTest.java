@@ -7,21 +7,21 @@ import org.junit.jupiter.api.Test;
 public class CellTest {
 	@Test
 	public void CreateCells() {
-		Cell deadCell = new Cell(false);
-		Cell livingCell = new Cell(true);
+		Cell deadCell = new Cell(Cell.DEAD);
+		Cell livingCell = new Cell(Cell.ALIVE);
 
-		assertEquals(false, deadCell.isAlive(), "the cell should not be alive");
-		assertEquals(true, livingCell.isAlive(), "the cells should be alive");
+		assertEquals(Cell.DEAD, deadCell.isAlive(), "the cell should not be alive");
+		assertEquals(Cell.ALIVE, livingCell.isAlive(), "the cells should be alive");
 	}
 
 	@Test
 	public void KillAndResurectACell() {
-		Cell cell = new Cell(true);
+		Cell cell = new Cell(Cell.ALIVE);
 
-		cell.kill();
-		assertEquals(false, cell.isAlive(), "the cell should have been killed");
+		cell.setIsAlive(Cell.DEAD);
+		assertEquals(Cell.DEAD, cell.isAlive(), "the cell should have been killed");
 
-		cell.live();
-		assertEquals(true, cell.isAlive(), "The cell should have been brought back to life");
+		cell.setIsAlive(Cell.ALIVE);
+		assertEquals(Cell.ALIVE, cell.isAlive(), "The cell should have been brought back to life");
 	}
 }
