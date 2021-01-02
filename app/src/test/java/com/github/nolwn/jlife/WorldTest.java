@@ -1,4 +1,4 @@
-package jLife;
+package com.github.nolwn.jlife;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;

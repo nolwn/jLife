@@ -1,4 +1,4 @@
-package jLife;
+package com.github.nolwn.jlife;
 
 public class World {
     public static final char DEAD = ' ';

@@ -29,7 +29,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'jLife.App'
+    mainClass = 'com.github.nolwn.jlife.App'
 }
 
 tasks.named('test') {
