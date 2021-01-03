@@ -18,17 +18,17 @@ public class World {
 		}
 	}
 
-	public World(int width, int height, char[] map) {
+	public World(int width, int height, Cell[] map) {
 		this.width = width;
 		this.height = height;
-		this.cells = toCells(map);
+		this.cells = map;
 	}
 
 	public String toString() {
 		String output = "";
 
 		for(int i = 0; i < width * height; i++) {
-			output += DEAD;
+			output += this.cells[i].isAlive() ? World.ALIVE : World.DEAD;
 
 			if ((i + 1) % width == 0) {
 				output += '\n';
@@ -71,15 +71,5 @@ public class World {
 		} else {
 			return true;
 		}
-	}
-
-	private Cell[] toCells(char[] map) {
-		Cell[] cells = new Cell[map.length];
-
-		for (int i = 0; i < cells.length; i++) {
-			cells[i] = new Cell(map[i] == World.ALIVE);
-		}
-
-		return cells;
 	}
 }
