@@ -83,7 +83,7 @@ public class WorldTest {
 	}
 
 	@Test
-	public void getCellThrowsWhenCoordsOutOfRange() {
+	public void getCellThrowsWhenCoordinatesOutOfRange() {
 		World world = new World(4, 4);
 
 		assertThrows(IndexOutOfBoundsException.class, () -> world.getCell(3, 4));
@@ -103,7 +103,7 @@ public class WorldTest {
 	}
 
 	@Test
-	public void setCellThrowsWhenCoordsOutOfRange() {
+	public void setCellThrowsWhenCoordinatesOutOfRange() {
 		World world = new World(4, 4);
 
 		assertThrows(
