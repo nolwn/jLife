@@ -18,6 +18,12 @@ public class World {
 		}
 	}
 
+	public World(int width, int height, char[] map) {
+		this.width = width;
+		this.height = height;
+		this.cells = toCells(map);
+	}
+
 	public String toString() {
 		String output = "";
 
@@ -50,7 +56,7 @@ public class World {
 			throw new IndexOutOfBoundsException();
 		}
 
-		int len = (y - 1) * this.height + this.width;
+		int len = y * this.height + x;
 
 		return this.cells[len];
 	}
@@ -65,5 +71,15 @@ public class World {
 		} else {
 			return true;
 		}
+	}
+
+	private Cell[] toCells(char[] map) {
+		Cell[] cells = new Cell[map.length];
+
+		for (int i = 0; i < cells.length; i++) {
+			cells[i] = new Cell(map[i] == World.ALIVE);
+		}
+
+		return cells;
 	}
 }

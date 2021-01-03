@@ -21,11 +21,10 @@ public class WorldTest {
 	}
 
 	@Test
+	// TODO: adjust this test to actually verify it gets the correct cell.
 	public void getCellStatusWithinRange() throws IndexOutOfBoundsException{
 		World world = new World(4, 4);
-		boolean status; 
-
-		status = world.getCell(1, 3);
+		boolean status = world.getCell(1, 3);
 
 		assertEquals(Cell.DEAD, status);
 	}
@@ -58,5 +57,27 @@ public class WorldTest {
 			IndexOutOfBoundsException.class, 
 			() -> world.setCell(2, 5, Cell.ALIVE)
 		);
+	}
+
+	@Test
+	public void loadsFromArray() {
+		char[] map = {
+			World.DEAD, 
+			World.DEAD, 
+			World.ALIVE, 
+			World.DEAD, 
+			World.ALIVE, 
+			World.DEAD, 
+			World.DEAD, 
+			World.DEAD,
+			World.DEAD
+		};
+
+		World world = new World(3, 3, map);
+
+		assertEquals(Cell.DEAD, world.getCell(0, 0), "1, 1 should be dead");
+		assertEquals(Cell.ALIVE, world.getCell(2, 0), "3, 1 should be alive");
+		assertEquals(Cell.ALIVE, world.getCell(1, 1), "2, 2 should be alive");
+		assertEquals(Cell.DEAD, world.getCell(2, 2), "3, 3 should be dead");
 	}
 }
